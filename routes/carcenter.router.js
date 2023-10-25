@@ -5,9 +5,9 @@ const {authJWT} = require("../middleware");
 
 //create a new Restaurant
 // http://localhost:5000/RestaurantsShil3aiinu
-router.post("/RestaurantShil3aiinu",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
+router.post("/Carcenter",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
   try {
-    const newRestaurant = req.body;
+    const newCarcenter = req.body;
     const createRestaurant = await Restaurant.createRestaurant(newRestaurant);
     res.status(201).json(createRestaurant);
   } catch (error) {
@@ -15,7 +15,7 @@ router.post("/RestaurantShil3aiinu",[authJWT.verifyToken, authJWT.isAdmin], asyn
   }
 });
 
-router.put("/RestaurantShil3aiinu/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
+router.put("/carcenter/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
   try {
     const restaurantId = Number.parseInt(req.params.id);
     const newRestaurant = req.body;
