@@ -3,51 +3,50 @@ const router = express.Router();
 const Restaurant = require("../controller/restaurant.controller");
 const {authJWT} = require("../middleware");
 
-//create a new Restaurant
-// http://localhost:5000/RestaurantsShil3aiinu
+// http://localhost:5000/Carcenter
 router.post("/Carcenter",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
   try {
     const newCarcenter = req.body;
-    const createRestaurant = await Restaurant.createRestaurant(newRestaurant);
-    res.status(201).json(createRestaurant);
+    const createCarcenter = await Carcenter.createCarcenter(newCarcenter);
+    res.status(201).json(createCarcenter);
   } catch (error) {
-    res.status(500).json({ error: "Failed to create Restaurant" });
+    res.status(500).json({ error: "Failed to create Car" });
   }
 });
 
-router.put("/carcenter/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
+router.put("/Carcenter/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
   try {
-    const restaurantId = Number.parseInt(req.params.id);
-    const newRestaurant = req.body;
+    const carcenterId = Number.parseInt(req.params.id);
+    const newcarcenter = req.body;
 
-    const updateResult = await Restaurant.updateRestaurant(
-      restaurantId,
-      newRestaurant
+    const updateResult = await Carcenter.updateCarcenter(
+      carcenterId,
+      newcarcenter
     );
     if (updateResult[0] === 0) {
-      return res.status(404).json({ error: "Restaurant not_found" });
+      return res.status(404).json({ error: "Carcenter not_found" });
     }
-    res.status(201).json({ message: "Restaurant updated successfully" });
+    res.status(201).json({ message: "Car updated successfully" });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Failed to update restaurant" });
+    res.status(500).json({ error: "Failed to update Carcenter" });
   }
 });
 
-router.get("/Restaurants", async (req, res) => {
+router.get("/Carcenters", async (req, res) => {
   try {
-    const ShowRestaurant = await Restaurant.getAll();
-    res.status(201).json(ShowRestaurant);
+    const ShowCarcenter = await Carcenter.getAll();
+    res.status(201).json(ShowCarcenter);
   } catch (error) {
-    res.status(500).json({ error: "Failed to Show Restaurant" });
+    res.status(500).json({ error: "Failed to Show Carcenter" });
   }
 });
 
-router.get("/Restaurants/:id",[authJWT.verifyToken], async (req, res) => {
+router.get("/Carcenters/:id",[authJWT.verifyToken], async (req, res) => {
   try {
-    const restaurantId = Number.parseInt(req.params.id);
+    const carcenterId = Number.parseInt(req.params.id);
 
-    const searchResult = await Restaurant.getOne(restaurantId);
+    const searchResult = await carcenter.getOne(carcenterId);
     if (searchResult[0] === 0) {
       return res.status(404).json({ error: "Restaurant not_found" });
     }
@@ -58,9 +57,9 @@ router.get("/Restaurants/:id",[authJWT.verifyToken], async (req, res) => {
   }
 });
 
-router.delete("/RestaurantShil3aiinu/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
+router.delete("/Carcenter/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
   try {
-    const restaurantId = Number.parseInt(req.params.id);
+    const carcenterId = Number.parseInt(req.params.id);
 
     const deleteIDResult = await Restaurant.Delete(restaurantId);
 

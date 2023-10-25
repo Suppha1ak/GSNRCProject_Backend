@@ -7,18 +7,32 @@ const carcenter = sequelize.define("carcenter",{
         primaryKey: true,
         autoIncrement: true
     },
-    name :{
+    brand :{
         type: DataTypes.STRING,
         allowNull: false
     },
-    type :{
+    model :{
         type: DataTypes.STRING,
         allowNull: false
     },
-    Img :{
+    images :{
         type: DataTypes.STRING,
         allowNull: false
     },
+    firstprimarycolor :{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    secondprimarycolor :{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    thirdprimarycolor :{
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+
+
     createdAt: {
         type: DataTypes.DATE,
         allowNull: true,
