@@ -1,4 +1,4 @@
-const Restaurant = require("../models/restaurant.model");
+const Restaurant = require("../models/carcenter.model");
 //Insert Data
 Restaurant.createRestaurant = async(newRestaurant)=>{
     try {

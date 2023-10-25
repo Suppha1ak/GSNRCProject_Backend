@@ -1,8 +1,7 @@
 const {dataType, DataTypes} = require("sequelize");
 const sequelize = require("./db");
 
-//Define the restaurant model
-const Restaurant = sequelize.define("restaurant",{
+const carcenter = sequelize.define("carcenter",{
     id :{
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -32,11 +31,11 @@ const Restaurant = sequelize.define("restaurant",{
     }
 });
 
-// // create database by sequelize
-// Restaurant.sync({force:false}).then(() => {
-//     console.log("Table is Create");
-// }).catch((xerror) => {
-//     console.error("Error! Not create table");
-// })
+// create database by sequelize
+carcenter.sync({force:false}).then(() => {
+    console.log("Table is Create");
+}).catch((error) => {
+    console.error("Error! Not create table");
+})
 
-module.exports = Restaurant;
+module.exports = carcenter;
