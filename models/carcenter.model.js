@@ -31,8 +31,6 @@ const carcenter = sequelize.define("carcenter",{
         type: DataTypes.STRING,
         allowNull: false
     },
-
-
     createdAt: {
         type: DataTypes.DATE,
         allowNull: true,

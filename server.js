@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const sql = require('./models/db');
-const restaurantRouter = require("./routes/carcenter.router");
-const Restaurant = require("./models/carcenter.model");
+const CarcenterRouter = require("./routes/carcenter.router");
+const Carcenter = require("./models/carcenter.model");
 const PORT = 3000;
 const db = require("./models/index");
 const role = db.role
@@ -40,7 +40,7 @@ app.get("/",(req,res)=>{
 
 
 
-app.use("/" , restaurantRouter);
+app.use("/" , CarcenterRouter);
 require("./routes/auth.router")(app);
 
 app.listen(PORT, ()=> {

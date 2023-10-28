@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const Restaurant = require("../controller/restaurant.controller");
+const Carcenter = require("../controller/carcenter.controller");
 const {authJWT} = require("../middleware");
 
 // http://localhost:5000/Carcenter
@@ -48,12 +48,12 @@ router.get("/Carcenters/:id",[authJWT.verifyToken], async (req, res) => {
 
     const searchResult = await carcenter.getOne(carcenterId);
     if (searchResult[0] === 0) {
-      return res.status(404).json({ error: "Restaurant not_found" });
+      return res.status(404).json({ error: "Carcenter not_found" });
     }
     res.status(201).json(searchResult);
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Failed to Search restaurants" });
+    res.status(500).json({ error: "Failed to Search Carcenters" });
   }
 });
 
@@ -61,19 +61,19 @@ router.delete("/Carcenter/:id",[authJWT.verifyToken, authJWT.isAdmin], async (re
   try {
     const carcenterId = Number.parseInt(req.params.id);
 
-    const deleteIDResult = await Restaurant.Delete(restaurantId);
+    const deleteIDResult = await Restaurant.Delete(carcenterId);
 
     res
       .status(201)
       .json({
-        message: "Restaurant Delete successfully Menu NO." + restaurantId,
+        message: "Carcenter Delete successfully CAR NO." + carcenterId,
       });
   } catch (error) {
     if (error.kind === "not_found") {
-      res.status(404).json({ error: "Restaurants is not_found" });
+      res.status(404).json({ error: "Carcenters is not_found" });
     } else {
       console.log(error);
-      res.status(500).json({ error: "Failed to Delete restaurants" });
+      res.status(500).json({ error: "Failed to Delete Carcenters" });
     }
   }
 });
