@@ -21,15 +21,15 @@ const carcenter = sequelize.define("carcenter",{
     },
     firstprimarycolor :{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     secondprimarycolor :{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     thirdprimarycolor :{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     createdAt: {
         type: DataTypes.DATE,
