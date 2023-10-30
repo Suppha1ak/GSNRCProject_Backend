@@ -17,7 +17,7 @@ const carcenter = sequelize.define("carcenter",{
     },
     price :{
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
     images :{
         type: DataTypes.STRING,
@@ -50,8 +50,16 @@ const carcenter = sequelize.define("carcenter",{
 // create database by sequelize
 carcenter.sync({force:false}).then(() => {
     console.log("Table is Create");
+    initial()
 }).catch((error) => {
     console.error("Error! Not create table");
 })
+
+function initial() {
+    carcenter.create({
+        id:1,
+        name: "user"
+    });
+}
 
 module.exports = carcenter;
