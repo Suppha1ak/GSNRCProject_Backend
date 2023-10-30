@@ -47,7 +47,7 @@ const carcenter = sequelize.define("carcenter",{
     }
 });
 
-// create database by sequelize
+// create database by sequelize and Delete table if true
 carcenter.sync({force:true}).then(() => {
     console.log("Table is Create");
 }).catch((error) => {
