@@ -15,6 +15,10 @@ const carcenter = sequelize.define("carcenter",{
         type: DataTypes.STRING,
         allowNull: false
     },
+    price :{
+        type: DataTypes.STRING,
+        allowNull: true
+    },
     images :{
         type: DataTypes.STRING,
         allowNull: false

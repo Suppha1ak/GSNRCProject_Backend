@@ -4,7 +4,7 @@ const Carcenter = require("../controller/carcenter.controller");
 const {authJWT} = require("../middleware");
 
 // http://localhost:5000/Carcenter
-router.post("/Carcenter",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
+router.post("/Carcenters",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
   try {
     const newCarcenter = req.body;
     const createCarcenter = await Carcenter.createCarcenter(newCarcenter);
@@ -14,7 +14,7 @@ router.post("/Carcenter",[authJWT.verifyToken, authJWT.isAdmin], async (req, res
   }
 });
 
-router.put("/Carcenter/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
+router.put("/Carcenters/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
   try {
     const carcenterId = Number.parseInt(req.params.id);
     const newcarcenter = req.body;
@@ -57,7 +57,7 @@ router.get("/Carcenters/:id",[authJWT.verifyToken], async (req, res) => {
   }
 });
 
-router.delete("/Carcenter/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
+router.delete("/Carcenters/:id",[authJWT.verifyToken, authJWT.isAdmin], async (req, res) => {
   try {
     const carcenterId = Number.parseInt(req.params.id);
 
