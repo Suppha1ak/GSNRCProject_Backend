@@ -48,23 +48,10 @@ const carcenter = sequelize.define("carcenter",{
 });
 
 // create database by sequelize
-carcenter.sync({force:false}).then(() => {
+carcenter.sync({force:true}).then(() => {
     console.log("Table is Create");
-    initial()
 }).catch((error) => {
     console.error("Error! Not create table");
 })
-
-function initial() {
-    carcenter.create({
-        id:1,
-        brand: "Ferrari",
-        model: " 488 Pista Spider",
-        images:"https://images.autofun.co.th/file1/72f975ad19f342e2980068566d226ecc_606x402.jpg",
-        firstprimarycolor:"#000",
-        secondprimarycolor:"#000",
-        thirdprimarycolor:"#000"
-    });
-}
 
 module.exports = carcenter;
