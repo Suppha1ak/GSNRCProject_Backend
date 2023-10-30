@@ -58,7 +58,12 @@ carcenter.sync({force:false}).then(() => {
 function initial() {
     carcenter.create({
         id:1,
-        name: "user"
+        "brand": "Ferrari",
+        "model": " 488 Pista Spider",
+        "images":"https://images.autofun.co.th/file1/72f975ad19f342e2980068566d226ecc_606x402.jpg",
+        "firstprimarycolor":"while",
+        "secondprimarycolor":"blue",
+        "thirdprimarycolor":"black"
     });
 }
 
