@@ -31,6 +31,7 @@ db.role.belongsToMany(db.user, {
     through: "user_roles"
 })
 //2
+// Test
 db.user.belongsToMany(db.role, {
     through: "user_roles"
 })
