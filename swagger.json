@@ -162,9 +162,13 @@
                   }
                 },
                 "example": {
-                  "name": "หมึกทอด",
-                  "type": "จานเดี่ยว",
-                  "Img": "https://2.bp.blogspot.com/-ENLEeDIAaAE/VA_Tx6G7z1I/AAAAAAAAAAg/RHp1W2r_odE/s1600/%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B9%84%E0%B8%97%E0%B8%A24.jpg"
+                "brand": "Ferrari",
+                "model": "488 Pista Spider",
+                "price":"11,600,000",
+                "images":"https://images.autofun.co.th/file1/16d84793ae9a41aa9d8baddef4266881_912x516.jpg",
+                "firstprimarycolor":"#ffffff",
+                "secondprimarycolor":"#000099",
+                "thirdprimarycolor":"#000000"
                 }
               }
             }
