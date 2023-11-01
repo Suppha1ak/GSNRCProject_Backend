@@ -110,6 +110,7 @@
         }
       }
     },
+
     "/Carcenters": {
       "get": {
         "tags": ["Carcenters"],
@@ -198,6 +199,7 @@
         }
       }
     },
+    
     "/Carcenters/{id}": {
       "get": {
         "tags": ["Carcenters"],
@@ -211,6 +213,8 @@
               "type": "integer"
             }
           },
+
+
           {
             "name": "x-access-token",
             "in": "header",
@@ -218,6 +222,7 @@
             "type": "string",
             "description": "An authorization header"
           }
+
         ],
         "responses": {
           "200": {

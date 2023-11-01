@@ -17,7 +17,7 @@ Carcenter.updateCarcenter = async (carcenterId, newCarcenter) => {
       newCarcenter,
       { where: { id: carcenterId } }
     );
-    return updateCarcenter;
+    return updatedCarcenter;
   } catch (error) {
     console.log("err", error);
     throw error;
@@ -51,13 +51,13 @@ Carcenter.getOne = async (carcenterId) => {
 
 Carcenter.Delete = async (carcenterId) => {
   try {
-    const DestroyMenu = await Carcenter.destroy(
+    const DestroyCar = await Carcenter.destroy(
       { where: { id: carcenterId } }
     );
-    if(DestroyMenu === 0){
+    if(DestroyCar === 0){
       throw{kind : "not_found"}
     }
-    return DestroyMenu;
+    return DestroyCar;
   } catch (error) {
     console.log("err", error);
     throw error;
