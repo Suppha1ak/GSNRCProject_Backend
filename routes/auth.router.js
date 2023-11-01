@@ -1,4 +1,4 @@
-const { verifySingUp} = require('../middleware');
+const { verifySignUp} = require('../middleware');
 const controller = require('../controller/auth.controller');
 module.exports = function(app){
     app.use(function(req, res , next) {
@@ -9,15 +9,15 @@ module.exports = function(app){
         next();
     });
     app.post(
-        "/api/auth/singup",
-        [verifySingUp.checkUserOrEmail , verifySingUp.checkROLES],controller.singup
+        "/api/auth/signUp",
+        [verifySignUp.checkUserOrEmail , verifySignUp.checkROLES],controller.signup
     )
     app.post(
-        "/api/auth/singin",
-        controller.singIn
+        "/api/auth/signIn",
+        controller.signIn
     )
     app.post(
-        "/api/auth/refrechToken",
+        "/api/auth/refreshToken",
         controller.refreshToken
     )
 }

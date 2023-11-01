@@ -9,7 +9,7 @@ const Op = db.Sequelize.Op;
 
 
 //signUp Create by Suppha1ak
-exports.singup = (req, res) => {
+exports.signup = (req, res) => {
   const emailDomain = req.body.email.split('@')[1].toLowerCase();
   let userRoles;
 
@@ -56,8 +56,8 @@ exports.singup = (req, res) => {
     });
 };
 
-//SingInUser
-exports.singIn = (req, res) => {
+//SignInUser
+exports.signIn = (req, res) => {
   User.findOne({
     where: {
       username: req.body.username,
@@ -124,19 +124,19 @@ exports.refreshToken = async (req, res) => {
         .status(403)
         .json({
           message:
-            "Refresh Token was expired. Please make a new signin request",
+            "Refresh Token was expired. Please make a new signIn request",
         });
       return;
     }
     const user = await refreshToken.getUser();
-    let newAccassToken = jwt.sign({ id: user.id }, config.secret, {
+    let newAccessToken = jwt.sign({ id: user.id }, config.secret, {
       algorithm: "HS256",
       //allowInsecureKeySize:true,
       expiresIn: config.jwtExpiration,
     });
 
     return res.status(200).json({
-      accessToken: newAccassToken,
+      accessToken: newAccessToken,
       refreshToken: refreshToken.token,
     });
   } catch (error) {

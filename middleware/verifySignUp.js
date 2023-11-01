@@ -47,9 +47,9 @@ checkROLES = (req, res, next) => {
     next();
 }
 
-const verifySingUp = {
+const verifySignUp = {
     checkUserOrEmail : checkUserOrEmail,
     checkROLES: checkROLES,
 }
 
-module.exports = verifySingUp
+module.exports = verifySignUp
