@@ -6,7 +6,7 @@
     "version": "0.0.1"
   },
   "paths": {
-    "/api/auth/singup": {
+    "/api/auth/signUp": {
       "post": {
         "tags": ["Authentication"],
         "description": "Sign in to Grab Restaurant",
@@ -20,11 +20,7 @@
               "properties": {
                 "username": { "type": "string" },
                 "email": { "type": "string" },
-                "password": { "type": "string" },
-                "roles": {
-                  "type": "array",
-                  "items": { "type": "string" }
-                }
+                "password": { "type": "string" }
               }
             }
           }
@@ -40,10 +36,6 @@
                     "id": { "type": "number" },
                     "username": { "type": "string" },
                     "email": { "type": "string" },
-                    "roles": {
-                      "type": "array",
-                      "items": { "type": "string" }
-                    },
                     "accessToken": { "type": "string" }
                   }
                 },
@@ -51,7 +43,6 @@
                   "id": 4,
                   "username": "admin",
                   "email": "admin@gmail.com",
-                  "roles": ["moderator", "admin"],
                   "accessToken": "eyJhbGc....S_2b42-zD4"
                 }
               }
@@ -60,7 +51,7 @@
         }
       }
     },
-    "/api/auth/singin": {
+    "/api/auth/signIn": {
       "post": {
         "tags": ["Authentication"],
         "description": "Sign in to Grab Restaurant",
@@ -109,7 +100,7 @@
                     "id": 3,
                     "username": "username",
                     "email": "email@webmail.npru.ac.th",
-                    "roles": ["ROLES_MODERATOR", "ROLES_ADMIN"],
+                    "roles": ["ADMIN"],
                     "accessToken": "eyJhbGc....S_2b42-zD4"
                   }
                 }
@@ -119,21 +110,29 @@
         }
       }
     },
-    "/Restaurants": {
+    "/Carcenters": {
       "get": {
-        "tags": ["Restaurant"],
+        "tags": ["Carcenters"],
         "responses": {
           "200": {
             "description": "Successfully restaurant data"
           }
         }
-      }
-    },
-    "/RestaurantShil3aiinu": {
+      },
       "post": {
-        "tags": ["Restaurant"],
-        "description": "Add to Grab Restaurant",
+        "tags": ["Carcenters"],
+        "description": "Add a Car to Carcenters",
+        "headers": {
+          "Authorization": "Bearer YourAccessTokenHere"
+        },
         "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "An authorization header"
+          },
           {
             "name": "body",
             "in": "body",
@@ -141,34 +140,57 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": { "type": "string" },
-                "type": { "type": "string" },
-                "Img": { "type": "string" }
+                "brand": { "type": "string" },
+                "model": { "type": "string" },
+                "price": { "type": "string" },
+                "imageFirst": { "type": "string" },
+                "imageSecond": { "type": "string" },
+                "imageThird": { "type": "string" },
+                "firstprimarycolor": { "type": "string" },
+                "secondprimarycolor": { "type": "string" },
+                "thirdprimarycolor": { "type": "string" }
               }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Successfully addmenu Restaurant",
+            "description": "Successfully add a Car to Carcenters",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "name": { "type": "string" },
-                    "type": { "type": "string" },
-                    "Img": { "type": "string" }
+                    "message": { "type": "string" },
+                    "car": {
+                      "type": "object",
+                      "properties": {
+                        "brand": { "type": "string" },
+                        "model": { "type": "string" },
+                        "price": { "type": "string" },
+                        "imageFirst": { "type": "string" },
+                        "imageSecond": { "type": "string" },
+                        "imageThird": { "type": "string" },
+                        "firstprimarycolor": { "type": "string" },
+                        "secondprimarycolor": { "type": "string" },
+                        "thirdprimarycolor": { "type": "string" }
+                      }
+                    }
                   }
                 },
                 "example": {
-                "brand": "Ferrari",
-                "model": "488 Pista Spider",
-                "price":"11,600,000",
-                "images":"https://images.autofun.co.th/file1/16d84793ae9a41aa9d8baddef4266881_912x516.jpg",
-                "firstprimarycolor":"#ffffff",
-                "secondprimarycolor":"#000099",
-                "thirdprimarycolor":"#000000"
+                  "message": "Car added successfully",
+                  "car": {
+                    "brand": "Ferrari",
+                    "model": "488 Pista Spider",
+                    "price": "11,600,000",
+                    "imageFirst": "https://images.autofun.co.th/file1/16d84793ae9a41aa9d8baddef4266881_912x516.jpg",
+                    "imageSecond": "https://images.autofun.co.th/file1/16d84793ae9a41aa9d8baddef4266881_912x516.jpg",
+                    "imageThird": "https://images.autofun.co.th/file1/16d84793ae9a41aa9d8baddef4266881_912x516.jpg",
+                    "firstprimarycolor": "#ffffff",
+                    "secondprimarycolor": "#000099",
+                    "thirdprimarycolor": "#000000"
+                  }
                 }
               }
             }
@@ -176,10 +198,10 @@
         }
       }
     },
-    "/Restaurants/{id}": {
+    "/Carcenters/{id}": {
       "get": {
-        "tags": ["Restaurant"],
-        "description": "Get Restaurant by ID",
+        "tags": ["Carcenters"],
+        "description": "Get Carcenters by ID",
         "parameters": [
           {
             "name": "id",
@@ -188,11 +210,18 @@
             "schema": {
               "type": "integer"
             }
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "An authorization header"
           }
         ],
         "responses": {
           "200": {
-            "description": "Successfully get restaurant by Id",
+            "description": "Successfully get Carcenters by Id",
             "content": {
               "application/json": {
                 "schema": {
@@ -216,13 +245,17 @@
             }
           }
         }
-      }
-    },
-
-    "/RestaurantShil3aiinu/{id}": {
+      },
       "put": {
-        "tags": ["Restaurant"],
+        "tags": ["Carcenters"],
         "parameters": [
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "An authorization header"
+          },
           {
             "name": "id",
             "in": "path",
@@ -236,32 +269,45 @@
             "schema": {
               "type": "object",
               "properties": {
-                "name": { "type": "string" },
-                "type": { "type": "string" },
-                "Img": { "type": "string" }
+                "brand": { "type": "string" },
+                "model": { "type": "string" },
+                "price": { "type": "string" },
+                "imageFirst": { "type": "string" },
+                "imageSecond": { "type": "string" },
+                "imageThird": { "type": "string" },
+                "firstprimarycolor": { "type": "string" },
+                "secondprimarycolor": { "type": "string" },
+                "thirdprimarycolor": { "type": "string" }
               }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Successfully updated restaurant"
+            "description": "Successfully updated Carcenters"
           }
         }
       },
       "delete": {
-        "tags": ["Restaurant"],
+        "tags": ["Carcenters"],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "integer"
+          },
+          {
+            "name": "x-access-token",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "description": "An authorization header"
           }
         ],
         "responses": {
           "204": {
-            "description": "Successfully deleted restaurant"
+            "description": "Successfully deleted Carcenters"
           }
         }
       }
