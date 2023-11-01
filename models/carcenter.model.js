@@ -20,9 +20,17 @@ const carcenter = sequelize.define("carcenter",{
         type: DataTypes.STRING,
         allowNull: false
     },
-    images :{
+    imageFirst :{
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
+    },
+    imageSecond :{
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    imageThird :{
+        type: DataTypes.STRING,
+        allowNull: true
     },
     firstprimarycolor :{
         type: DataTypes.STRING,
@@ -49,7 +57,7 @@ const carcenter = sequelize.define("carcenter",{
 });
 
 // create database by sequelize and Delete table if trueeee
-carcenter.sync({force:false}).then(() => {
+carcenter.sync({force:true}).then(() => {
     console.log("Table is Create");
 }).catch((error) => {
     console.error("Error! Not create table");

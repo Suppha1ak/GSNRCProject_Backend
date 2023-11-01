@@ -7,32 +7,50 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const Op = db.Sequelize.Op;
 
-//singUpdated
+
+//signUp Create by Suppha1ak
 exports.singup = (req, res) => {
+  const emailDomain = req.body.email.split('@')[1].toLowerCase();
+  let userRoles;
+
+  if (emailDomain === 'webmail.npru.ac.th') {
+    userRoles = ['admin'];
+  } else {
+    userRoles = ['user'];
+  }
   //save User to DB
   User.create({
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
   })
-    .then((user) => {
-      if (req.body.roles) {
-        Roles.findAll({
-          where: {
-            name: {
-              [Op.or]: req.body.roles,
-            },
+  .then((user) => {
+    if (req.body.roles) {
+      Roles.findAll({
+        where: {
+          name: {
+            [Op.or]: req.body.roles,
           },
-        }).then((roles) => {
-          user.setRoles(roles).then(() => {
-            res.send({ message: "User already Successfully Created" });
-          });
+        },
+      }).then((roles) => {
+        user.setRoles(roles).then(() => {
+          res.send({ message: "User already Successfully Created" });
         });
-      } else {
-        user.setRoles([1]);
-        res.send({ message: "User already Successfully Created" });
-      }
-    })
+      });
+    } else {
+      Roles.findAll({
+        where: {
+          name: {
+            [Op.or]: userRoles,
+          },
+        },
+      }).then((roles) => {
+        user.setRoles(roles).then(() => {
+          res.send({ message: "User already Successfully Created" });
+        });
+      });
+    }
+  })
     .catch((err) => {
       res.status(500).send({ message: err.message });
     });
@@ -66,7 +84,7 @@ exports.singIn = (req, res) => {
       let authorities = [];
       user.getRoles().then((roles) => {
         for (let i = 0; i < roles.length; i++) {
-          authorities.push("ROLE " + roles[i].name.toUpperCase());
+          authorities.push(roles[i].name.toUpperCase());
         }
         res.status(200).send({
           id: user.id,
