@@ -56,11 +56,11 @@ const carcenter = sequelize.define("carcenter",{
     }
 });
 
-// create database by sequelize and Delete table if trueeee
-// carcenter.sync({force:true}).then(() => {
-//     console.log("Table is Create");
-// }).catch((error) => {
-//     console.error("Error! Not create table");
-// })
+//create database by sequelize and Delete table
+carcenter.sync({force:true}).then(() => {
+    console.log("Table is Create");
+}).catch((error) => {
+    console.error("Error! Not create table");
+})
 
 module.exports = carcenter;
