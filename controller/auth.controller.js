@@ -65,18 +65,17 @@ exports.signIn = (req, res) => {
   })
     .then(async (user) => {
       if (!user) {
-        return res.status(404)({ message: "user not found" });
+        return res.status(404).json({ message: "User not found" });
       }
-      let passwordIsnot = bcrypt.compareSync(req.body.password, user.password);
-      if (!passwordIsnot) {
-        return res.status(401)({
+      let passwordIsCorrect = bcrypt.compareSync(req.body.password, user.password);
+      if (!passwordIsCorrect) {
+        return res.status(401).json({
           accessToken: null,
-          message: "Error password",
+          message: "Incorrect password",
         });
       }
       const token = jwt.sign({ id: user.id }, config.secret, {
         algorithm: "HS256",
-        //allowInsecureKeySize:true,
         expiresIn: config.jwtExpiration,
       });
       const refresh = await REFRESHTOKEN.createToken(user);
@@ -86,7 +85,7 @@ exports.signIn = (req, res) => {
         for (let i = 0; i < roles.length; i++) {
           authorities.push(roles[i].name.toUpperCase());
         }
-        res.status(200).send({
+        res.status(200).json({
           id: user.id,
           username: user.username,
           email: user.email,
@@ -97,10 +96,8 @@ exports.signIn = (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).send({ message: err.message });
+      res.status(500).json({ message: err.message });
     });
-
- 
 };
 
 exports.refreshToken = async (req, res) => {
