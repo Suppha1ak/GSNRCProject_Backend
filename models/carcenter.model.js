@@ -20,29 +20,13 @@ const carcenter = sequelize.define("carcenter",{
         type: DataTypes.STRING,
         allowNull: false
     },
-    imageFirst :{
+    image :{
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
-    imageSecond :{
+    primaryColor :{
         type: DataTypes.STRING,
-        allowNull: true
-    },
-    imageThird :{
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    firstprimarycolor :{
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    secondprimarycolor :{
-        type: DataTypes.STRING,
-        allowNull: true
-    },
-    thirdprimarycolor :{
-        type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
     createdAt: {
         type: DataTypes.DATE,
@@ -57,10 +41,10 @@ const carcenter = sequelize.define("carcenter",{
 });
 
 //create database by sequelize and Delete table
-/* carcenter.sync({force:true}).then(() => {
+/*  carcenter.sync({force:true}).then(() => {
     console.log("Table is Create");
 }).catch((error) => {
     console.error("Error! Not create table");
-}) */
+})  */
 
 module.exports = carcenter;

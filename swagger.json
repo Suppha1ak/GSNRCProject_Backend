@@ -144,19 +144,15 @@
                 "brand": { "type": "string" },
                 "model": { "type": "string" },
                 "price": { "type": "string" },
-                "imageFirst": { "type": "string" },
-                "imageSecond": { "type": "string" },
-                "imageThird": { "type": "string" },
-                "firstprimarycolor": { "type": "string" },
-                "secondprimarycolor": { "type": "string" },
-                "thirdprimarycolor": { "type": "string" }
+                "image": { "type": "string" },
+                "primaryColor": { "type": "string" }
               }
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Successfully add a Car to Carcenters",
+            "description": "Successfully create a Car to Carcenters",
             "content": {
               "application/json": {
                 "schema": {
@@ -169,12 +165,8 @@
                         "brand": { "type": "string" },
                         "model": { "type": "string" },
                         "price": { "type": "string" },
-                        "imageFirst": { "type": "string" },
-                        "imageSecond": { "type": "string" },
-                        "imageThird": { "type": "string" },
-                        "firstprimarycolor": { "type": "string" },
-                        "secondprimarycolor": { "type": "string" },
-                        "thirdprimarycolor": { "type": "string" }
+                        "image": { "type": "string" },
+                        "primaryColor": { "type": "string" }
                       }
                     }
                   }
@@ -185,12 +177,8 @@
                     "brand": "Ferrari",
                     "model": "488 Pista Spider",
                     "price": "11,600,000",
-                    "imageFirst": "https://images.autofun.co.th/file1/16d84793ae9a41aa9d8baddef4266881_912x516.jpg",
-                    "imageSecond": "https://images.autofun.co.th/file1/16d84793ae9a41aa9d8baddef4266881_912x516.jpg",
-                    "imageThird": "https://images.autofun.co.th/file1/16d84793ae9a41aa9d8baddef4266881_912x516.jpg",
-                    "firstprimarycolor": "#ffffff",
-                    "secondprimarycolor": "#000099",
-                    "thirdprimarycolor": "#000000"
+                    "image": "https://images.autofun.co.th/file1/16d84793ae9a41aa9d8baddef4266881_912x516.jpg",
+                    "primaryColor": "Black"
                   }
                 }
               }
@@ -226,28 +214,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully get Carcenters by Id",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "number"
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "type": {
-                      "type": "string"
-                    },
-                    "Img": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
+            "description": "Successfully get Carcenters by Id"
           }
         }
       },
@@ -277,12 +244,8 @@
                 "brand": { "type": "string" },
                 "model": { "type": "string" },
                 "price": { "type": "string" },
-                "imageFirst": { "type": "string" },
-                "imageSecond": { "type": "string" },
-                "imageThird": { "type": "string" },
-                "firstprimarycolor": { "type": "string" },
-                "secondprimarycolor": { "type": "string" },
-                "thirdprimarycolor": { "type": "string" }
+                "image": { "type": "string" },
+                "primaryColor": { "type": "string" }
               }
             }
           }
